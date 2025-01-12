@@ -1,0 +1,153 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    text-align: center;
+    font-size: 40px;
+    background-color:#81BFDA;
+    color:aliceblue;
+    padding-top: 30px;
+    margin: -10px;
+}
+
+.navbar {
+    display: flex; /* Use flexbox */
+    justify-content: flex-end; /* Align items to the right */
+    background-color: #81BFDA; /* Dark background */
+    width: 100%; /* Make the navbar full width */
+}
+
+.navbar ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for the list */
+    font-size: 20px;
+}
+
+.navbar li {
+    margin-left: 20px; /* Add space between items */
+}
+
+.navbar li a {
+    display: block; /* Make the link fill the list item */
+    color: white; /* Text color */
+    text-align: center; /* Center the text */
+    padding: 14px 20px; /* Add padding */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar li a:hover {
+    background-color: #ddd; /* Change background on hover */
+    color: black; /* Change text color on hover */
+}
+
+
+
+.rounded-rectangle {
+    width: 800px; /* Width of the rectangle */
+    height: 300px; /* Height of the rectangle */
+    background-color: #C6E7FF; /* Color of the rectangle */
+    border-radius: 200px; /* Rounded ends */
+    position: relative; /* Positioning context */
+    left: 30%; /* Move it to the right */
+    margin-top: 50px;
+    transform: translateX(-50%); /* Center it horizontally */
+    margin-left: -200px; /* Move it left by half its width to show only half */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+.student-image {
+    width: 270px; /* Set image width */
+    height: 270px; /* Set image height to match width for a circle */
+    border-radius: 50%; /* Make the image circular */
+    position: absolute; /* Position the image absolutely */
+    right: 10px; /* Move the image to the left to align with the rounded corner */
+    top: 50%; /* Center the image vertically */
+    transform: translateY(-50%); /* Adjust for the height of the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.student-login{
+    display: inline-block;
+    padding: 20px 30px;
+    font-size: 25px;
+    color: white;
+    background-color: #608BC1; /* Bootstrap primary color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 30px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+    margin-left: 270px;
+}
+
+
+.student-login:hover {
+    background-color: #6a94c433; /* Light hover effect */
+}
+
+
+
+
+.rounded-rectangle2{
+    width: 800px; /* Width of the rectangle */
+    height: 295px; /* Height of the rectangle */
+    background-color: #C6E7FF; /* Color of the rectangle */
+    border-radius: 200px; /* Rounded ends */
+    position: relative; /* Positioning context */
+    left: 30%; /* Move it to the right */
+    margin-top: -295px;
+    transform: translateX(-50%); /* Center it horizontally */
+    margin-left: 700px; /* Move it left by half its width to show only half */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    padding: 20px; /* Add some padding */
+
+    box-sizing: border-box; /* Include padding in width/height */
+    }
+
+.employer-image {
+    width: 250px; /* Set image width */
+    height: 250px; /* Set image height to match width for a circle */
+    border-radius: 50%; /* Make the image circular */
+    position: absolute; /* Position the image absolutely */
+    left: 10px; /* Move the image to the left to align with the rounded corner */
+    top: 50%; /* Center the image vertically */
+    transform: translateY(-50%); /* Adjust for the height of the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.employer-login{
+    display: inline-block;
+    padding: 20px 30px;
+    font-size:25px;
+    color: white;
+    background-color: #608BC1; /* Bootstrap primary color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 30px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+    margin-left: 300px;
+}
+
+
+.employer-login:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+.footer{
+    font-size: 40px;
+    color: white;
+    align-content: center;
+    text-align: center;
+    width: 1270px;
+    height: 100px;
+    margin: -10px;
+    margin-top: 50px;
+    background-color:#81BFDA ;
+}
+
