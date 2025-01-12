@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="Password">Create Password:</label>
-                <input type="password" id="Password" name="Password" required>
+                <input type="password" id="Password" name="password" required>
             </div>
             <div class="form-group">
                 <label for="grade">Grade:</label>
@@ -47,41 +47,58 @@
                     <option value="Other">Other</option>
                 </select>
                 <input type="text" id="otherCareer" name="otherCareer" placeholder="If Other, please specify" style="display: none;">
-            </div>
+            </div> 
             <div class="form-group">
                 <label for="aboutYourself">About Yourself:</label>
                 <textarea id="aboutYourself" name="aboutYourself" rows="4" required></textarea>
             </div>
-            <div class="form group">
+            <div class="form-group">
                 <label for="resume">Upload your resume:</label>
-                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required><br><br>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
             </div>
             <button type="submit">Create Account</button>
         </form>
     </div>
 
-<script>
-    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const formData = new FormData(this); // Create a FormData object from the form
-
-        fetch('/register', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Account created successfully!');
-                // Optionally redirect to login page or another page
+    <script>
+        // Show or hide the "Other" career input based on selection
+        document.getElementById('careerInterest').addEventListener('change', function() {
+            const otherCareerInput = document.getElementById('otherCareer');
+            if (this.value === 'Other') {
+                otherCareerInput.style.display = 'block';
             } else {
-                alert('Error creating account: ' + data.message);
+                otherCareerInput.style.display = 'none';
+                otherCareerInput.value = ''; // Clear the input if not selected
             }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-</script>
+        });
+
+        // Handle form submission
+        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this); // Create a FormData object from the form
+            const careerInterest = document.getElementById('careerInterest').value;
+            const otherCareer = document.getElementById('otherCareer').value;
+            const finalCareerInterest = careerInterest === 'Other' ? otherCareer : careerInterest;
+
+            formData.append('careerInterest', finalCareerInterest); // Append the final career interest
+
+            // Send the form data to the server
+            fetch('/register', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Account created successfully!');
+                    // Optionally redirect to login page or another page
+                } else {
+                    alert('Error creating account: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
-

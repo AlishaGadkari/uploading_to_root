@@ -1,12 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-const multer = require('multer');
 const sqlite3 = require('sqlite3').verbose();
+const multer = require('multer');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const db = new sqlite3.Database(':memory:'); // Use a persistent database in production
+const db = new sqlite3.Database('users.db'); // Use a file-based SQLite database
 
 // Middleware
 app.use(bodyParser.json());
@@ -24,15 +24,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Create users table
+// Create users table if it doesn't exist
 db.serialize(() => {
-    db.run("CREATE TABLE users (id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, email TEXT UNIQUE, password TEXT, grade TEXT, careerInterest TEXT, aboutYourself TEXT, resume TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT UNIQUE, password TEXT, grade TEXT, careerInterest TEXT, aboutYourself TEXT, resume TEXT)");
 });
 
 // Register endpoint
 app.post('/register', upload.single('resume'), (req, res) => {
-    const { firstName, lastName, email, Password, grade, careerInterest, aboutYourself } = req.body;
-    const hashedPassword = bcrypt.hashSync(Password, 8);
+    const { firstName, lastName, email, password, grade, careerInterest, aboutYourself } = req.body;
+    const hashedPassword = bcrypt.hashSync(password, 8);
     const resumePath = req.file ? req.file.path : null; // Get the path of the uploaded file
 
     db.run("INSERT INTO users (firstName, lastName, email, password, grade, careerInterest, aboutYourself, resume) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
