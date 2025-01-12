@@ -59,4 +59,29 @@
             <button type="submit">Create Account</button>
         </form>
     </div>
+
+<script>
+    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(this); // Create a FormData object from the form
+
+        fetch('/register', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Account created successfully!');
+                // Optionally redirect to login page or another page
+            } else {
+                alert('Error creating account: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 </body>
+</html>
+
