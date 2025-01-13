@@ -74,7 +74,7 @@ def login():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.first_name)  # Assuming you want to display the first name
+    return render_template('studentprofile.html', name=current_user.first_name)  # Display the user's first name
 
 @app.route('/logout')
 @login_required
