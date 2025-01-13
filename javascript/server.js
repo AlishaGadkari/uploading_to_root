@@ -3,13 +3,16 @@ const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import CORS
 const path = require('path');
 
 const app = express();
 const db = new sqlite3.Database('users.db'); // Use a file-based SQLite database
 
 // Middleware
-app.use(bodyParser.json());
+app.use(cors()); // Enable CORS
+app.use(bodyParser.urlencoded({ extended: true })); // Handle URL-encoded data
+app.use(bodyParser.json()); // Handle JSON data
 app.use(express.static('public')); // Serve static files from the public directory
 
 // Set up multer for file uploads
