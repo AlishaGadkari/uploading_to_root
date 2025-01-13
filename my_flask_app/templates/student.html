@@ -13,7 +13,16 @@
     </div>
     <div class="login-container">
         <h2>Student Login</h2>
-        <form id="loginForm">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -23,13 +32,9 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <a href="studentnewaccount.html" style="display: block; text-align: center; margin-bottom: 10px;">Create Account</a>
-            <button type="button" onclick="showMessage()">Login</button>
+            <button type="submit">Login</button>
         </form>
         <div id="message"></div>
     </div>
-    <script src="javascript/script.js"></script>
 </body>
 </html>
-
-
-

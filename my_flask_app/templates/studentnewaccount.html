@@ -13,7 +13,7 @@
     </div>
     <div class="form-container">
         <h2>Student Profile</h2>
-        <form id="createAccountForm">
+        <form id="createAccountForm" method="POST" action="{{ url_for('register') }}">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -70,34 +70,6 @@
                 otherCareerInput.style.display = 'none';
                 otherCareerInput.value = ''; // Clear the input if not selected
             }
-        });
-
-        // Handle form submission
-        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const formData = new FormData(this); // Create a FormData object from the form
-            const careerInterest = document.getElementById('careerInterest').value;
-            const otherCareer = document.getElementById('otherCareer').value;
-            const finalCareerInterest = careerInterest === 'Other' ? otherCareer : careerInterest;
-
-            formData.append('careerInterest', finalCareerInterest); // Append the final career interest
-
-            // Send the form data to the server
-            fetch('/register', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Account created successfully!');
-                    // Optionally redirect to login page or another page
-                } else {
-                    alert('Error creating account: ' + data.message);
-                }
-            })
-            .catch(error => console.error('Error:', error));
         });
     </script>
 </body>
